@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📰</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap"
+    rel="stylesheet" />
+  <title>P41 AI 智能体聚合大屏</title>
+  <link rel="stylesheet" href="../shared/design-tokens.css" />
+  <link rel="stylesheet" href="./styles.css" />
+  <meta name="description" content="AI 智能体聚合大屏。P41 AI 智能体聚合大屏" />
+  <meta property="og:title" content="P41 AI 智能体聚合大屏" />
+  <meta property="og:description" content="AI 智能体聚合大屏 — 前端纯静态新闻工具" />
+  <meta property="og:title" content="P41 AI 智能体聚合大屏" />
+  <meta property="og:description" content="AI 智能体聚合大屏 — 前端纯静态新闻工具" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yuuqq.github.io/P41-agent-portal/" />
+</head>
+
+<body>
+  <main class="app">
+    <header class="hero">
+      <h1>AI 新闻助手合集</h1>
+      <p>集中管理多个 AI 入口，支持搜索、分类、一键打开与链接复制。</p>
+      <input id="search" type="text" placeholder="搜索助手（名称/描述/标签）..." aria-label="搜索" />
+      <p id="meta" class="meta">共 0 项</p>
+    </header>
+
+    <section class="panel">
+      <div id="categories" class="chips"></div>
+      <div class="batch-actions">
+        <button id="copyAllBtn" type="button" class="btn-secondary">📋 复制全部链接</button>
+        <button id="openAllBtn" type="button" class="btn-secondary">🌐 打开全部</button>
+      </div>
+    </section>
+
+    <section class="grid" id="grid"></section>
+
+    <section class="card">
+      <h2>⏱ 最近使用</h2>
+      <ul id="recentList" class="recent-list">
+        <li class="empty-hint">暂无使用记录</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>本地 JSON 配置</h2>
+      <p class="hint">字段示例：id/name/desc/url/category/tags（tags 为数组）。</p>
+      <textarea id="configInput" rows="8" aria-label="配置输入"></textarea>
+      <div class="actions">
+        <button id="applyConfigBtn" type="button">应用配置</button>
+        <button id="resetConfigBtn" type="button">恢复默认</button>
+      </div>
+      <p id="status" aria-live="polite">状态: 就绪</p>
+    </section>
+  </main>
+  <script src="./pm-metrics.js" defer></script>
+  <script src="./app.js" defer></script>
+
+  <!-- Privacy Notice -->
+  <div style="text-align:center;padding:12px 16px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:24px;">
+    🔒 隐私提示：本工具所有数据处理均在您的浏览器本地完成，不会上传任何数据至服务器。
+  </div>
+
+  <!-- Cross-Project Navigation -->
+  <nav
+    style="display:flex;justify-content:space-between;align-items:center;padding:10px 16px;font-size:13px;border-top:1px solid #e5e5e5;margin-top:16px;color:#666;">
+    <a href="https://yuuqq.github.io/_codex/" style="text-decoration:none;">📋 工具箱导航</a>
+    <span style="opacity:.4">P41</span>
+  </nav>
+</body>
+
+</html>
