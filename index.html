@@ -21,6 +21,15 @@
   <meta property="og:description" content="AI 智能体聚合大屏 — 前端纯静态新闻工具" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://yuuqq.github.io/P41-agent-portal/" />
+  <link rel="manifest" href="./manifest.json" />
+<style media="print">
+.gnav,.pedagogy-panel,.explore-section,[class*="dark-toggle"],button[aria-label]{display:none!important}
+body{background:#fff!important;color:#000!important;font-size:11pt}
+.app,main,.container{box-shadow:none!important;border:none!important;padding:0!important}
+a{color:#000!important;text-decoration:underline}
+a[href]::after{content:" (" attr(href) ")";font-size:9pt;color:#666}
+@page{margin:2cm}
+</style>
 </head>
 
 <body>
@@ -31,6 +40,8 @@
       <input id="search" type="text" placeholder="搜索助手（名称/描述/标签）..." aria-label="搜索" />
       <p id="meta" class="meta">共 0 项</p>
     </header>
+
+    <section class="card"><details class="teach-card" open><summary>🎓 AI 助手与新闻工作流</summary><p>现代新闻工作流中，AI 工具可以协助写作、事实核查、数据可视化、翻译等多个环节。本工具整合多个 AI 助手入口，支持分类、搜索、历史记录和自定义配置，方便记者快速切换不同工具。</p></details></section>
 
     <section class="panel">
       <div id="categories" class="chips"></div>
@@ -71,9 +82,19 @@
   <!-- Cross-Project Navigation -->
   <nav
     style="display:flex;justify-content:space-between;align-items:center;padding:10px 16px;font-size:13px;border-top:1px solid #e5e5e5;margin-top:16px;color:#666;">
-    <a href="https://yuuqq.github.io/_codex/" style="text-decoration:none;">📋 工具箱导航</a>
+    <a href="https://yuuqq.github.io/journalism-toolbox/" style="text-decoration:none;">📋 工具箱导航</a>
     <span style="opacity:.4">P41</span>
   </nav>
+  <script src="../shared/dark-toggle.js" defer></script>
+  <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').catch(()=>{})}</script>
+  <script src="../shared/cmd-palette.js" defer></script>
+  <script src="../shared/toast.js" defer></script>
+  <script src="../shared/onboarding.js" defer></script>
+
+  <script src="https://yuuqq.github.io/shared/pedagogy-data-p1.js" defer></script>
+  <script src="https://yuuqq.github.io/shared/pedagogy-data-p2.js" defer></script>
+  <script src="https://yuuqq.github.io/shared/global-nav.js" defer></script>
+  <script src="https://yuuqq.github.io/shared/kbd-hints.js" defer></script>
 </body>
 
 </html>
