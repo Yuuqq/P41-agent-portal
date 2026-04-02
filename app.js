@@ -19,14 +19,16 @@ const STORAGE_AGENTS = "p41_agents_v2";
 const STORAGE_RECENT = "p41_recent_v1";
 
 const DEFAULT_AGENTS = [
-  { id: "writer-coach", name: "写作陪练", desc: "改写、提纲、润色", url: "https://chat.openai.com/", category: "内容生产", tags: ["写作", "编辑"] },
+  { id: "writer-coach", name: "写作陪练", desc: "改写、提纲、润色", url: "https://chat.openai.com/", category: "内容生产", tags: ["写作", "编辑"], note: "需登录 OpenAI 账号" },
   { id: "fact-check", name: "事实核查助手", desc: "核查流程提醒和证据链梳理", url: "https://www.bing.com/search?q=fact+check+workflow", category: "核查验证", tags: ["核查", "流程"] },
   { id: "data-viz", name: "数据可视化助理", desc: "图表方案建议与叙事结构提示", url: "https://echarts.apache.org/examples/", category: "数据分析", tags: ["图表", "可视化"] },
   { id: "interview-helper", name: "采访提问助手", desc: "访谈提纲和追问策略", url: "https://duckduckgo.com/?q=interview+question+framework", category: "内容生产", tags: ["采访", "提纲"] },
   { id: "translation-agent", name: "多语翻译助手", desc: "跨语种快速理解与术语对照", url: "https://translate.google.com/", category: "效率工具", tags: ["翻译", "多语"] },
-  { id: "timeline-agent", name: "时间线整理助手", desc: "将事件拆为可核对的时间轴", url: "https://www.wolframalpha.com/", category: "核查验证", tags: ["时间线", "结构化"] },
-  { id: "perplexity", name: "Perplexity AI", desc: "带来源引用的 AI 搜索引擎", url: "https://www.perplexity.ai/", category: "效率工具", tags: ["搜索", "AI"] },
-  { id: "deepl", name: "DeepL 翻译", desc: "高质量神经网络翻译", url: "https://www.deepl.com/translator", category: "效率工具", tags: ["翻译"] }
+  { id: "timeline-agent", name: "时间线整理助手", desc: "将事件拆为可核对的时间轴", url: "https://www.wolframalpha.com/", category: "核查验证", tags: ["时间线", "结构化"], note: "部分功能需付费" },
+  { id: "perplexity", name: "Perplexity AI", desc: "带来源引用的 AI 搜索引擎", url: "https://www.perplexity.ai/", category: "效率工具", tags: ["搜索", "AI"], note: "需登录获取更多功能" },
+  { id: "deepl", name: "DeepL 翻译", desc: "高质量神经网络翻译", url: "https://www.deepl.com/translator", category: "效率工具", tags: ["翻译"] },
+  { id: "claude", name: "Claude AI", desc: "Anthropic 的 AI 助手", url: "https://claude.ai/", category: "效率工具", tags: ["AI", "对话"], note: "需登录 Anthropic 账号" },
+  { id: "kimi", name: "Kimi 智能助手", desc: "月之暗面 AI 助手，支持长文本", url: "https://kimi.moonshot.cn/", category: "效率工具", tags: ["AI", "长文本"], note: "需登录" }
 ];
 
 let agents = loadAgents();
@@ -46,7 +48,8 @@ function normalizeAgent(item) {
     desc: String(item.desc || "").trim(),
     url: String(item.url || "").trim(),
     category: String(item.category || "未分类").trim(),
-    tags: Array.isArray(item.tags) ? item.tags.map(t => String(t).trim()).filter(Boolean) : []
+    tags: Array.isArray(item.tags) ? item.tags.map(t => String(t).trim()).filter(Boolean) : [],
+    note: String(item.note || "").trim()
   };
 }
 
@@ -139,6 +142,7 @@ function renderGrid() {
         <div class="tile-info">
           <h3>${escapeHtml(agent.name)}</h3>
           <p class="desc">${escapeHtml(agent.desc)}</p>
+          ${agent.note ? `<p class="tile-note" style="font-size:0.75rem;color:#888;margin-top:4px">⚠️ ${escapeHtml(agent.note)}</p>` : ""}
         </div>
       </div>
       <p class="tile-meta">${escapeHtml(agent.category)} · ${agent.tags.join(" / ") || "无标签"}</p>
