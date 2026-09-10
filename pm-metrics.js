@@ -126,16 +126,14 @@
   }
 
   function bindCtaTracking() {
-    const buttons = Array.from(document.querySelectorAll("button[id], button[type='button']"));
-    buttons.forEach(btn => {
-      if (btn.dataset.pmBound === "1") return;
-      btn.dataset.pmBound = "1";
-      btn.addEventListener("click", () => {
+    document.addEventListener("click", (e) => {
+      const btn = e.target.closest("button[id], button[type='button']");
+      if (btn) {
         track("cta_click", {
           control_id: btn.id || "",
           control_text: (btn.textContent || "").trim().slice(0, 80)
         });
-      });
+      }
     });
   }
 
