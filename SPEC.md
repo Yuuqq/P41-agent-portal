@@ -49,7 +49,6 @@
 ## 8. Acceptance Criteria
 
 - [ ] 入口卡片
-- [ ] iframe 预览
 - [ ] 新窗口打开
 - [ ] 纯静态页面可部署 GitHub Pages
 - [ ] 移动端可用

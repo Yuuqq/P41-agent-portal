@@ -8,7 +8,7 @@
  * 3. 网络优先 (Network-First) 获取 API 请求
  * 4. 离线回退页面
  */
-const CACHE_NAME = "journalism-tool-v1";
+const CACHE_NAME = "p41-agent-portal-v1";
 const CORE_ASSETS = [
   "./",
   "./index.html",

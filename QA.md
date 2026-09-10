@@ -16,7 +16,6 @@
 
 ### 已验证项
   - [x] 卡片展示
-  - [x] 预览切换
   - [x] 新窗打开
 
 ## Accessibility Checks

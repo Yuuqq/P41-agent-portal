@@ -38,7 +38,12 @@ let recent = loadRecent();
 function setStatus(text) { statusEl.textContent = `状态: ${text}`; }
 
 function escapeHtml(str) {
-  return String(str ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  return String(str ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }
 
 function normalizeAgent(item) {
@@ -76,7 +81,9 @@ function saveAgents() { localStorage.setItem(STORAGE_AGENTS, JSON.stringify(agen
 function loadRecent() {
   try {
     const raw = localStorage.getItem(STORAGE_RECENT);
-    return raw ? JSON.parse(raw) : [];
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
   } catch (_) { return []; }
 }
 
@@ -145,9 +152,9 @@ function renderGrid() {
           ${agent.note ? `<p class="tile-note" style="font-size:0.75rem;color:#888;margin-top:4px">⚠️ ${escapeHtml(agent.note)}</p>` : ""}
         </div>
       </div>
-      <p class="tile-meta">${escapeHtml(agent.category)} · ${agent.tags.join(" / ") || "无标签"}</p>
+      <p class="tile-meta">${escapeHtml(agent.category)} · ${agent.tags.map(escapeHtml).join(" / ") || "无标签"}</p>
       <div class="tile-actions">
-        <a href="${escapeHtml(agent.url)}" target="_blank" rel="noopener noreferrer" class="open-btn" data-agent-id="${agent.id}">打开 →</a>
+        <a href="${escapeHtml(agent.url)}" target="_blank" rel="noopener noreferrer" class="open-btn" data-agent-id="${escapeHtml(agent.id)}">打开 →</a>
         <button type="button" class="copy-btn" data-url="${escapeHtml(agent.url)}" title="复制链接">📋</button>
       </div>
     `;
@@ -204,6 +211,10 @@ if (copyAllBtn) {
 
 if (openAllBtn) {
   openAllBtn.addEventListener("click", () => {
+    if (agents.length > 20) {
+      alert(`链接数量过多 (${agents.length} 个)，为防止浏览器卡顿，限制最多打开 20 个。`);
+      return;
+    }
     if (!confirm(`即将打开 ${agents.length} 个链接，确定？`)) return;
     agents.forEach(a => window.open(a.url, "_blank", "noopener"));
     setStatus(`已打开 ${agents.length} 个链接`);

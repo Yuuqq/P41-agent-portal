@@ -19,6 +19,15 @@
 - ♿ 完整无障碍标签（aria-label）
 - 🔒 所有数据仅在浏览器本地处理
 
+## 🚀 本地开发 (Local Development)
+
+由于本项目使用了 Service Worker (`sw.js`)，直接双击 `index.html`（通过 `file://` 协议）打开会导致 Service Worker 注册失败。
+
+请使用本地 HTTP 服务器运行项目，例如：
+- `npx serve`
+- `python3 -m http.server 8000`
+- 或者使用 VS Code 的 Live Server 插件
+
 ## 🛠️ 技术栈
 
 - 纯 HTML + CSS + JavaScript（零依赖框架）
