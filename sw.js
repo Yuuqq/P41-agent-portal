@@ -8,7 +8,7 @@
  * 3. 网络优先 (Network-First) 获取 API 请求
  * 4. 离线回退页面
  */
-const CACHE_NAME = "journalism-tool-P41-v3-parchment";
+const CACHE_NAME = "journalism-tool-P41-v4-parchment";
 const CORE_ASSETS = [
   "./",
   "./index.html",
@@ -17,15 +17,15 @@ const CORE_ASSETS = [
   "./modern-styles.css",
   "./app.js",
   "./pm-metrics.js",
-  "../shared/design-tokens.css",
-  "../shared/dark-toggle.js",
-  "../shared/cmd-palette.js",
-  "../shared/toast.js",
-  "../shared/onboarding.js",
-  "../shared/pedagogy-data-p1.js",
-  "../shared/pedagogy-data-p2.js",
-  "../shared/global-nav.js",
-  "../shared/kbd-hints.js"
+  "./shared/design-tokens.css",
+  "./shared/dark-toggle.js",
+  "./shared/cmd-palette.js",
+  "./shared/toast.js",
+  "./shared/onboarding.js",
+  "./shared/pedagogy-data-p1.js",
+  "./shared/pedagogy-data-p2.js",
+  "./shared/global-nav.js",
+  "./shared/kbd-hints.js"
 ];
 
 // Install: Pre-cache core assets
