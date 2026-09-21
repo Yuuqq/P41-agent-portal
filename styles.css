@@ -71,7 +71,7 @@ textarea {
   border: 1px solid #b8c8eb;
   border-radius: 4px;
   padding: 6px 12px;
-  background: #f4f8ff;
+  background: #F7EFDA;
   color: #2d4f8d;
   cursor: pointer;
   font: inherit;
@@ -95,7 +95,7 @@ textarea {
   border: 1px solid #c4d4f5;
   border-radius: 6px;
   padding: 12px;
-  background: #fbfdff;
+  background: #F7EFDA;
 }
 
 .tile h3 {
@@ -153,7 +153,7 @@ iframe {
   height: 56vh;
   border: 1px solid #b7c9ef;
   border-radius: 6px;
-  background: #f4f8ff;
+  background: #F7EFDA;
 }
 
 .hint {
@@ -316,7 +316,7 @@ details[open] summary { margin-bottom: 8px; }
 }
 .toast-msg {
   position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
-  background: #333; color: #fff; padding: 10px 20px; border-radius: 8px;
+  background: #333; color: #fff; padding: 10px 20px; border-radius: 6px;
   font-size: 0.9rem; z-index: 9999; opacity: 0;
   transition: opacity 0.3s ease;
 }
