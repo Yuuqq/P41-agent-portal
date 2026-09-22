@@ -68,20 +68,20 @@ textarea {
 }
 
 .chip {
-  border: 1px solid #b8c8eb;
+  border: 1px solid var(--line, #D3C4A0);
   border-radius: 4px;
   padding: 6px 12px;
-  background: #F7EFDA;
-  color: #2d4f8d;
+  background: var(--paper-hi, #F7EFDA);
+  color: var(--ink, #3A2E20);
   cursor: pointer;
   font: inherit;
   font-size: 14px;
 }
 
 .chip.active {
-  color: #fff;
+  color: var(--paper-hi, #F7EFDA);
   border-color: transparent;
-  background: linear-gradient(135deg,#3A2E20,#241B11);
+  background: var(--ink, #3A2E20);
 }
 
 .grid {
@@ -92,10 +92,10 @@ textarea {
 }
 
 .tile {
-  border: 1px solid #c4d4f5;
+  border: 1px solid var(--line, #D3C4A0);
   border-radius: 6px;
   padding: 12px;
-  background: #F7EFDA;
+  background: var(--paper-3, #EFE4C6);
 }
 
 .tile h3 {
@@ -104,13 +104,13 @@ textarea {
 
 .desc {
   margin: 0 0 8px;
-  color: #3a5181;
+  color: var(--ink-secondary, #6E5B41);
   line-height: 1.5;
 }
 
 .tile-meta {
   margin: 0 0 10px;
-  color: #5c72a1;
+  color: var(--ink-secondary, #6E5B41);
   font-size: 13px;
 }
 
@@ -118,6 +118,17 @@ textarea {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
+}
+
+.open-btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  background: var(--ink, #3A2E20) !important;
+  color: var(--paper-hi, #F7EFDA) !important;
+  text-decoration: none;
 }
 
 button {
