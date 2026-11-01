@@ -99,13 +99,6 @@ function getDomainInitial(url) {
   } catch (_) { return "?"; }
 }
 
-function getDomainColor(url) {
-  const colors = ["#667eea", "#f5576c", "#4facfe", "#43e97b", "#fa709a", "#a18cd1", "#06b6d4", "#f59e0b"];
-  let hash = 0;
-  for (const c of url) hash = (hash * 31 + c.charCodeAt(0)) & 0xffffff;
-  return colors[hash % colors.length];
-}
-
 function getCategories() { return ["全部", ...new Set(agents.map(a => a.category))]; }
 
 function matchesAgent(agent, q) {
@@ -118,7 +111,7 @@ function renderCategories() {
   getCategories().forEach(cat => {
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = `chip ${cat === activeCategory ? "active" : ""}`;
+    btn.className = `chip filter-chip${cat === activeCategory ? " active" : ""}`;
     btn.textContent = cat;
     btn.addEventListener("click", () => { activeCategory = cat; renderCategories(); renderGrid(); });
     categoriesEl.appendChild(btn);
@@ -134,21 +127,20 @@ function renderGrid() {
     const card = document.createElement("article");
     card.className = "tile";
     const initial = getDomainInitial(agent.url);
-    const color = getDomainColor(agent.url);
 
     card.innerHTML = `
       <div class="tile-header">
-        <div class="tile-icon" style="background:${color}">${initial}</div>
+        <div class="tile-icon" aria-hidden="true">${initial}</div>
         <div class="tile-info">
           <h3>${escapeHtml(agent.name)}</h3>
           <p class="desc">${escapeHtml(agent.desc)}</p>
-          ${agent.note ? `<p class="tile-note" style="font-size:0.75rem;color:#888;margin-top:4px">⚠️ ${escapeHtml(agent.note)}</p>` : ""}
+          ${agent.note ? `<p class="tile-note">${escapeHtml(agent.note)}</p>` : ""}
         </div>
       </div>
-      <p class="tile-meta">${escapeHtml(agent.category)} · ${escapeHtml(agent.tags.join(" / ")) || "无标签"}</p>
+      <p class="tile-meta"><span>${escapeHtml(agent.category)}</span><span>${escapeHtml(agent.tags.join(" / ")) || "无标签"}</span></p>
       <div class="tile-actions">
-        <a href="${escapeHtml(agent.url)}" target="_blank" rel="noopener noreferrer" class="open-btn" data-agent-id="${escapeHtml(agent.id)}">打开 →</a>
-        <button type="button" class="copy-btn" data-url="${escapeHtml(agent.url)}" title="复制链接">📋</button>
+        <a href="${escapeHtml(agent.url)}" target="_blank" rel="noopener noreferrer" class="open-btn" data-agent-id="${escapeHtml(agent.id)}">打开</a>
+        <button type="button" class="copy-btn btn-secondary" data-url="${escapeHtml(agent.url)}" aria-label="复制链接">复制</button>
       </div>
     `;
     grid.appendChild(card);
